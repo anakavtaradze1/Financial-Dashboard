@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transactions - MyBank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div>
+          <div class="sidebar-header">
+            <svg
+              class="logo-icon"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              ></path>
+            </svg>
+            <h1 class="logo-text">MyBank</h1>
+          </div>
+          <nav>
+            <ul class="nav-list">
+              <li>
+                <a href="dashboard.html" class="nav-item">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="transactions.html" class="nav-item active">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    ></path>
+                  </svg>
+                  <span>Transactions</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <main class="main-content">
+        <header class="main-header">
+          <div class="greeting-box">
+            <h1 class="greeting">Transaction History</h1>
+            <div class="sub-greeting">View and manage your transactions.</div>
+          </div>
+          <div class="header-actions">
+            <label class="theme-switch"
+              ><input type="checkbox" id="theme-toggle" /><span
+                class="slider"
+              ></span
+            ></label>
+            <img src="images/user-avatar.png" alt="pfp" class="pfp" />
+            <button class="mobile-menu-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div class="summary-cards">
+          <div class="summary-card income">
+            <div class="title">Total Income</div>
+            <div class="value" id="total-income">$0.00</div>
+          </div>
+          <div class="summary-card expense">
+            <div class="title">Total Expenses</div>
+            <div class="value" id="total-expenses">$0.00</div>
+          </div>
+          <div class="summary-card net">
+            <div class="title">Net Flow</div>
+            <div class="value" id="net-flow">$0.00</div>
+          </div>
+        </div>
+        <div class="card no-hover">
+          <div class="transaction-filters">
+            <div class="search-wrapper">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search transactions..."
+              />
+            </div>
+            <div class="filter-options">
+              <select id="type-filter">
+                <option value="all">All Types</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+              <select id="category-filter">
+                <option value="all">All Categories</option>
+                <option value="Food">Food</option>
+                <option value="Bills">Bills</option>
+                <option value="Travel">Travel</option>
+                <option value="Income">Income</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Other">Other</option>
+              </select>
+              <button class="export-btn" id="export-btn">Export</button>
+            </div>
+          </div>
+          <div class="date-filters">
+            <input type="date" id="start-date" />
+            <input type="date" id="end-date" />
+            <div class="quick-select">
+              <button id="filter-month">This Month</button>
+              <button id="filter-90-days">Last 90 Days</button>
+            </div>
+          </div>
+          <div class="transaction-table-container">
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="transaction-table-body"></tbody>
+            </table>
+          </div>
+          <div class="pagination-container" id="pagination-container"></div>
+        </div>
+      </main>
+    </div>
+    <div id="details-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Transaction Details</h2>
+          <button class="modal-close" id="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
